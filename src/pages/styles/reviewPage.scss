@@ -1,0 +1,56 @@
+.reviewPage {
+    flex: 1;
+    width: 100%;
+    background-color: #1E1E1E;
+    height: 100%;
+    display: flex;
+
+    justify-content: center;
+
+    .content {
+        padding: 28px;
+        max-width: 500px;
+
+        .titleAndImage {
+            padding: 20px;
+            width: 100%;
+            margin: 0 20px;
+
+            > img {
+                max-width: 400px;
+            }
+
+            > div {
+                div {
+                    p {
+                        word-wrap: break-word;
+                    }
+                }
+                
+                padding: 20px;
+                background-color: #3a3a3a;
+                text-align: center;
+                
+                .feedback {
+                    margin-top: 20px;
+                    color: white;
+                    display: flex;
+
+                    justify-content: space-evenly;
+
+                    svg {
+                        width: 20px;
+                        height: 20px;
+
+                        transition: all ease-in-out 0.3s;
+
+                        &:hover {
+                            cursor: pointer;
+                            transform: scale(1.02);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

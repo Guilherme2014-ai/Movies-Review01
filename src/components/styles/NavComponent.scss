@@ -1,0 +1,42 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px 50px;
+
+    position: absolute;
+    top: 0;
+    
+    width: 100%;
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        > input {
+            text-align: center;
+            flex: 1;
+            max-width: 400px;
+
+            height: 30px;
+            border-radius: 5px;
+
+            outline: none;
+            border: none;
+
+            margin: 0 18px;
+        }
+
+        svg {
+            width: 25px;
+        }
+    }
+
+    &::after {
+        content: "";
+        flex: 1;
+        border: solid 1px #292828;
+        height: 3px;
+    }
+}

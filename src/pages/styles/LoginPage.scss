@@ -1,0 +1,48 @@
+.LoginPage {
+    display: flex;
+    align-items: center;
+
+    background-color: #1E1E1E;
+    height: 100vh;
+
+    .LoginPage__formLoginArea {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        
+        form {
+            flex: 1;
+            background-color: #292929;
+            max-width: 300px;
+            height: 300px;
+
+            padding: 30px;
+            border-radius: 9px;
+            
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            button {
+                width: 100%;
+                transition: all ease-in-out 0.3s;
+                height: 40px;
+                background: none;
+                border-radius: 8px;
+                cursor: pointer;
+                margin: 10px 0;
+            }
+
+            .googleSiginButton {
+                border-color: #D93A33;
+                color: #D93A33;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
+            }
+        }
+    }
+}
