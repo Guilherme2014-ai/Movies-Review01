@@ -39,7 +39,9 @@ export function CategoryWrapperComponent({
                 navigate(`/homepage/${category.id}`);
               }}
             >
-              <h1>{category.name}</h1>
+              <h1>{`${category.name.substring(0, 6)}${
+                category.name.length > 6 ? "..." : ""
+              }`}</h1>
             </div>
           );
         })}
