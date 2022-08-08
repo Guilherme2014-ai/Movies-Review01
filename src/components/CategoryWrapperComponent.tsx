@@ -1,31 +1,17 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router";
+import { IGenre } from "../interfaces/entities/IGenre";
 
 // CSS
 import "./styles/CategoryWrapperComponent.scss";
 
-const categories = [
-  {
-    name: "Action",
-    slug: "action",
-  },
-  {
-    name: "Drama",
-    slug: "drama",
-  },
-  {
-    name: "Romance",
-    slug: "romance",
-  },
-  {
-    name: "Suspence",
-    slug: "suspence",
-  },
-];
-
-export function CategoryWrapperComponent() {
+export function CategoryWrapperComponent({
+  allGenres,
+}: {
+  allGenres: IGenre[];
+}) {
   const navigate = useNavigate();
-  const { category_slug } = useParams<{ category_slug: string }>();
+  const { category_id } = useParams<{ category_id: string }>();
 
   return (
     <div className="categoryListArea">
@@ -40,17 +26,17 @@ export function CategoryWrapperComponent() {
           element?.scrollBy(isWheelPositive ? jump : -jump, 0);
         }}
       >
-        {categories.map((category) => {
+        {allGenres.map((category) => {
           return (
             <div
               className="categoryCard"
-              key={category.slug}
+              key={category.id}
               style={{
                 backgroundColor:
-                  category_slug == category.slug ? "#5C24D3" : "",
+                  category_id == `${category.id}` ? "#5C24D3" : "",
               }}
               onClick={() => {
-                navigate(`/homepage/${category.slug}`);
+                navigate(`/homepage/${category.id}`);
               }}
             >
               <h1>{category.name}</h1>

@@ -2,7 +2,7 @@ import { Avatar } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router";
 import { ReviewRepository } from "../adapters/repositories/ReviewsRepository";
-import { IReviewHomepageQuery } from "../interfaces/querys/IReviewHomepageQuery";
+import { IReviewHomepageQuery } from "../interfaces/queries/IReviewHomepageQuery";
 import LikeComponent from "./icons/LikeComponent";
 import DeslikeComponent from "./icons/LikeComponent copy";
 

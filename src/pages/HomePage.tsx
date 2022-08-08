@@ -1,37 +1,48 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import { idUniqueV2 } from "id-unique-protocol";
-import { useNavigate } from "react-router";
-import { ReviewrsRepository } from "../adapters/repositories/ReviewsrRepository";
-import { CategoryWrapperComponent } from "../components/CategoryWrapperComponent";
-import { MovieReviewCard } from "../components/MovieReviewCard";
-import { NavComponent } from "../components/NavComponent";
-import { IReviewrQueryHomePage } from "../interfaces/querys/IReviewrQueryHomePage";
 
-import "./styles/homePage.scss";
-import { ReviewRepository } from "../adapters/repositories/ReviewsRepository";
+// Dependences
 import { useParams } from "react-router";
-import { IReviewHomepageQuery } from "../interfaces/querys/IReviewHomepageQuery";
+import { useNavigate } from "react-router";
+import { idUniqueV2 } from "id-unique-protocol";
+
+// Interfaces
+import { IReviewrQueryHomePage } from "../interfaces/queries/IReviewrQueryHomePage";
+
+// Components
+import { NavComponent } from "../components/NavComponent";
+import { CategoryWrapperComponent } from "../components/CategoryWrapperComponent";
+
+// Adapters
+import { ReviewrsRepository } from "../adapters/repositories/ReviewsrRepository";
+
+// CSS
+import "./styles/homePage.scss";
+import { genres } from "../static/genres";
+import { IMovie } from "../interfaces/entities/IMovies";
+import { TmdbAPI } from "../adapters/APIs/MovieAPIs/TmdbAPI";
 
 export function HomePage() {
   const navigate = useNavigate();
   const [reviewrState, setReviewrState] =
     useState<null | IReviewrQueryHomePage>(null);
-  const { category_slug } = useParams<{ category_slug: string }>();
+  const { category_id } = useParams<{ category_id: string }>();
   const [allCategoryMovies, setAllCategoryMovies] = useState<
-    IReviewHomepageQuery[] | null | undefined
+    IMovie[] | null | undefined
   >(null);
 
   useEffect(() => {
     getAllCategoryReviews();
 
+    // By ID *
     async function getAllCategoryReviews() {
-      const reviews = await new ReviewRepository().findAllCategoryReviews(
-        category_slug as string,
+      const movies = await new TmdbAPI().getMoviesByCategory(
+        category_id as string,
       );
 
-      setAllCategoryMovies(reviews);
+      setAllCategoryMovies(movies as any as null | undefined);
     }
-  }, [category_slug]);
+  }, [category_id]);
 
   useEffect(() => {
     const reviewAuthIdentifier = localStorage.getItem("reviewr_uid");
@@ -52,26 +63,26 @@ export function HomePage() {
     }
   }, []);
 
-  console.log(reviewrState?.avatarUrl);
-
   return (
     <div className="Homepage">
       {reviewrState && <NavComponent reviewAvatar={reviewrState.avatarUrl} />}
       <section className="categoriesSection">
-        <CategoryWrapperComponent />
+        <CategoryWrapperComponent allGenres={genres} />
       </section>
       <section>
         {allCategoryMovies && (
           <div>
-            {allCategoryMovies.map((review) => {
-              return <MovieReviewCard review={review} key={idUniqueV2()} />;
+            {allCategoryMovies.map((movie) => {
+              return (
+                <div key={idUniqueV2()}>
+                  <h1>{movie.title}</h1>
+                  <h2>{movie.overview}</h2>
+                </div>
+              );
             })}
           </div>
         )}
       </section>
-      <br />
-      <br />
-      <br />
       <br />
       <br />
     </div>

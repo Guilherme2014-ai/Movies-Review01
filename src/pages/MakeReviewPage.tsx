@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { ReviewRepository } from "../adapters/repositories/ReviewsRepository";
 import { ReviewrsRepository } from "../adapters/repositories/ReviewsrRepository";
 import { IReviewMolde } from "../interfaces/moldes/IReviewMolde";
-import { IReviewrQueryHomePage } from "../interfaces/querys/IReviewrQueryHomePage";
+import { IReviewrQueryHomePage } from "../interfaces/queries/IReviewrQueryHomePage";
 
 import "./styles/MakeReviewPage.scss";
 

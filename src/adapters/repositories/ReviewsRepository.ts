@@ -1,6 +1,6 @@
 import { apolloClient } from "../../libs/apolloClient";
 import { gql } from "@apollo/client";
-import { IReviewHomepageQuery } from "../../interfaces/querys/IReviewHomepageQuery";
+import { IReviewHomepageQuery } from "../../interfaces/queries/IReviewHomepageQuery";
 import { IReviewMolde } from "../../interfaces/moldes/IReviewMolde";
 
 export class ReviewRepository {

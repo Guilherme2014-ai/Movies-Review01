@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { ReviewRepository } from "../adapters/repositories/ReviewsRepository";
 import LikeComponent from "../components/icons/LikeComponent";
 import DeslikeComponent from "../components/icons/LikeComponent copy";
-import { IReviewHomepageQuery } from "../interfaces/querys/IReviewHomepageQuery";
+import { IReviewHomepageQuery } from "../interfaces/queries/IReviewHomepageQuery";
 
 interface IReviewpageQuery extends IReviewHomepageQuery {
   id: string;

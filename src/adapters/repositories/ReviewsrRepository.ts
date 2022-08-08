@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { apolloClient } from "../../libs/apolloClient";
 import { IReviewrMolde } from "../../interfaces/moldes/IReviewrModel";
-import { IReviewrQueryHomePage } from "../../interfaces/querys/IReviewrQueryHomePage";
+import { IReviewrQueryHomePage } from "../../interfaces/queries/IReviewrQueryHomePage";
 
 export class ReviewrsRepository {
   async create(reviewr: IReviewrMolde) {
