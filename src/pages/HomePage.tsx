@@ -73,20 +73,16 @@ export function HomePage() {
       <section>
         {allCategoryMovies && (
           <div>
-            {allCategoryMovies.map((movie) => {
-              console.log(movie.image_url);
-
-              return (
-                <div key={idUniqueV2()}>
-                  <MovieCardComponent
-                    title={movie.title}
-                    overview={movie.overview}
-                    postUrl={movie.image_url}
-                    reviewsQuantity={10}
-                  />
-                </div>
-              );
-            })}
+            {allCategoryMovies.map((movie) => (
+              <div key={idUniqueV2()}>
+                <MovieCardComponent
+                  title={movie.title}
+                  overview={movie.overview}
+                  postUrl={movie.image_url}
+                  reviewsQuantity={10}
+                />
+              </div>
+            ))}
           </div>
         )}
       </section>
