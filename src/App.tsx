@@ -15,6 +15,7 @@ import { ReviewPage } from "./pages/ReviewPage";
 
 // CSS
 import "./styles/App.scss";
+import { MoviePage } from "./pages/MoviePage";
 
 function Redirect() {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ function App() {
           <Route path="/make_review/:movieName" element={<MakeReviewPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/homepage/:category_id" element={<HomePage />} />
+          <Route path="/movie/:movie_id" element={<MoviePage />} />
         </Routes>
       </Router>
     </div>

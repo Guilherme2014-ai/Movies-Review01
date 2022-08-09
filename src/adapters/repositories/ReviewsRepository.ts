@@ -7,7 +7,7 @@ export class ReviewRepository {
   async create(reviewMolde: IReviewMolde) {
     try {
       const { movieName, review, category, moviePictureUrl } = reviewMolde;
-      const reviewCreated = await apolloClient.mutate({
+      await apolloClient.mutate({
         mutation: gql`
           mutation createReview(
             $movieName: String!
@@ -49,6 +49,28 @@ export class ReviewRepository {
       });
     } catch (e) {
       console.error(e);
+    }
+  }
+  async findReviewsIdsByMovieName(movieName: string) {
+    try {
+      const reviews = await apolloClient.query<{ reviews: { id: string }[] }>({
+        query: gql`
+          query findReviewsIdsByMovieName($movieName: String!) {
+            reviews(where: { movieName: $movieName }) {
+              id
+            }
+          }
+        `,
+        variables: {
+          movieName,
+        },
+      });
+
+      const reviewsIds = reviews.data.reviews;
+
+      return reviewsIds;
+    } catch (e) {
+      throw e;
     }
   }
   async findAllCategoryReviews(categorySlug: string) {

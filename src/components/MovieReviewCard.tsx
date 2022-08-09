@@ -5,6 +5,7 @@ import { ReviewRepository } from "../adapters/repositories/ReviewsRepository";
 import { IReviewHomepageQuery } from "../interfaces/queries/IReviewHomepageQuery";
 import LikeComponent from "./icons/LikeComponent";
 import DeslikeComponent from "./icons/LikeComponent copy";
+import { SmallButtonComponent } from "./small/SmallButtonComponent";
 
 import "./styles/MovieReview.scss";
 
@@ -26,14 +27,10 @@ export function MovieReviewCard({ review }: { review: IReviewHomepageQuery }) {
           }}
         ></div>
         <div className="content">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate(`/make_review/${review.movieName}`);
-            }}
-          >
+          <SmallButtonComponent movieName={review.movieName}>
             Make a Review
-          </button>
+          </SmallButtonComponent>
+
           <div className="rates">
             <LikeComponent
               onClickFunc={(e: any) => {

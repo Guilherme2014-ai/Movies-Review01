@@ -81,6 +81,7 @@ export function HomePage() {
                   title={movie.title}
                   overview={movie.overview}
                   postUrl={movie.image_url}
+                  movieId={movie.id}
                   reviewsQuantity={10}
                 />
               </div>

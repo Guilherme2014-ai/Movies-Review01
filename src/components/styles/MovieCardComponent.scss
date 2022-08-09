@@ -8,6 +8,13 @@
         width: 100%;
         max-width: 800px;
 
+        transition: all ease-in-out 0.3s;
+
+        &:hover {
+            transform: scale(1.02);
+            cursor: pointer;
+        }
+
         .MovieCard__post {
             width: 100%;
             height: 280px;

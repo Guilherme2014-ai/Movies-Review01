@@ -19,6 +19,7 @@ export class TmdbAPI implements IMovieAPI {
 
     const formattedMovies: IMovie[] = movies.map((movie: any) => {
       const formattedMovie: IMovie = {
+        id: movie.id,
         title: movie.title,
         image_url: movie.poster_path,
         overview: movie.overview,

@@ -1,0 +1,18 @@
+.smallButton {
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: #5C24D3;
+
+    padding: 5px;
+
+    margin-bottom: 10px;
+
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+}
