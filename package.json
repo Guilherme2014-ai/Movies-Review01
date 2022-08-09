@@ -65,7 +65,8 @@
   "scripts": {
     "dev": "webpack serve --open --config ./webpack/webpack.dev.ts",
     "build": "webpack --config ./webpack/webpack.prod.ts",
-    "deploy": "gh-pages -b gh-pages -d dist"
+    "deploy": "gh-pages -b gh-pages -d dist",
+    "deploy:dev": "gh-pages -b gh-pages-dev -d dist"
   },
   "keywords": [],
   "author": "Guilherme Henrique",

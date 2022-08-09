@@ -6,7 +6,6 @@ import { IMovie } from "../../../interfaces/entities/IMovies";
 import { IMovieAPI } from "../../../interfaces/IMovieAPI";
 
 export class TmdbAPI implements IMovieAPI {
-  //https://api.themoviedb.org/3/discover/movie&with_genres=12
   private baseUrl = "https://api.themoviedb.org/3";
 
   async getMoviesByCategory(category: string) {
@@ -14,8 +13,6 @@ export class TmdbAPI implements IMovieAPI {
       this.baseUrl,
       `/discover/movie/?with_genres=${category}`,
     );
-
-    console.log(url);
 
     const moviesResponse = await axios.get<any>(url);
     const movies = moviesResponse.data.results;

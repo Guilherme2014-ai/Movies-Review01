@@ -37,6 +37,8 @@ export function HomePage() {
 
     // By ID *
     async function getAllCategoryReviews() {
+      console.log("getAllCategoryReviews Func --> Test");
+
       const movies = await new TmdbAPI().getMoviesByCategory(
         category_id as string,
       );
