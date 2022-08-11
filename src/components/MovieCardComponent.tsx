@@ -56,7 +56,7 @@ export function MovieCardComponent({
             <h1>{title}</h1>
             <p>{overview}</p>
             <br />
-            <SmallButtonComponent movieName={title}>
+            <SmallButtonComponent movieName={title} moviePicture={postUrl}>
               Make a Review
             </SmallButtonComponent>
             <br />

@@ -27,7 +27,10 @@ export function MovieReviewCard({ review }: { review: IReviewHomepageQuery }) {
           }}
         ></div>
         <div className="content">
-          <SmallButtonComponent movieName={review.movieName}>
+          <SmallButtonComponent
+            movieName={review.movieName}
+            moviePicture={review.moviePictureUrl}
+          >
             Make a Review
           </SmallButtonComponent>
 

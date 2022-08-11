@@ -1,22 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
+
+// Adapters
 import { ReviewRepository } from "../adapters/repositories/ReviewsRepository";
-import { ReviewrsRepository } from "../adapters/repositories/ReviewsrRepository";
+
+// Interfaces
 import { IReviewMolde } from "../interfaces/moldes/IReviewMolde";
 import { IReviewrQueryHomePage } from "../interfaces/queries/IReviewrQueryHomePage";
 
+// CSS
 import "./styles/MakeReviewPage.scss";
 
 export function MakeReviewPage() {
   const navigate = useNavigate();
-  let { movieName } = useParams<{ movieName: string }>();
+  let { movieName, movieProfilePicture } = useParams<{
+    movieName: string;
+    movieProfilePicture: string;
+  }>();
+
   movieName = movieName ? movieName : "";
+  movieProfilePicture = movieProfilePicture
+    ? `https://image.tmdb.org/t/p/w500/${movieProfilePicture}`
+    : "";
 
   const [reviewrDataState, setReviewrDataState] =
     useState<IReviewrQueryHomePage | null>(null);
 
   const [movieNameFieldState, setMovieNameFieldState] = useState(movieName);
-  const [movieProfilePictureState, setMovieProfilePictureState] = useState("");
+  const [movieProfilePictureState, setMovieProfilePictureState] =
+    useState(movieProfilePicture);
   const [movieCategoryState, setMovieCategoryState] = useState("");
   const [movieReviewState, setMovieReviewState] = useState("");
 

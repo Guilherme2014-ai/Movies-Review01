@@ -53,11 +53,23 @@ export class ReviewRepository {
   }
   async findReviewsIdsByMovieName(movieName: string) {
     try {
-      const reviews = await apolloClient.query<{ reviews: { id: string }[] }>({
+      const reviews = await apolloClient.query<{
+        reviews: IReviewHomepageQuery[];
+      }>({
         query: gql`
           query findReviewsIdsByMovieName($movieName: String!) {
             reviews(where: { movieName: $movieName }) {
               id
+              movieName
+              moviePictureUrl
+              category
+              likes
+              deslikes
+
+              reviewr {
+                name
+                avatarUrl
+              }
             }
           }
         `,

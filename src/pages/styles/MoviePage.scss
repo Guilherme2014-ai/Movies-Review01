@@ -1,5 +1,44 @@
 .MoviePage {
     height: 100vh;
 
-    background-color: red;
+    .MoviePage__moviePost {
+        display: flex;
+        height: 500px;
+
+        .MoviePage__moviePost__horizontal {
+            display: flex;
+            flex: 1;
+            background: linear-gradient(to right, #1E1E1E 1%, transparent 99%);
+    
+            .MoviePage__moviePost__vertical {
+                flex: 1;
+                background: linear-gradient(to top, #1E1E1E 1%, transparent 99%);
+    
+                .MoviePage__moviePost__vertical__content {
+                    height: 100%;
+
+                    display: flex;
+                    color: white;
+                    
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    
+                    > div {
+                        margin-left: 40px;
+                        color: white;
+
+                        h1 {
+                            font-size: 35px;
+                            margin-bottom: 20px;
+                        }
+                        button {
+                            padding: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+

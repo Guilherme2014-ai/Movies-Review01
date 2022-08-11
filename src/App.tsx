@@ -33,7 +33,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Redirect />} />
           <Route path="/review/:review_id" element={<ReviewPage />} />
-          <Route path="/make_review/:movieName" element={<MakeReviewPage />} />
+          <Route
+            path="/make_review/:movieName/:movieProfilePicture"
+            element={<MakeReviewPage />}
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/homepage/:category_id" element={<HomePage />} />
           <Route path="/movie/:movie_id" element={<MoviePage />} />
