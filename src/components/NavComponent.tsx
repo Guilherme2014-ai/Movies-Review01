@@ -4,6 +4,7 @@ import NotificationIcon from "./icons/NotificationIcon";
 
 import "./styles/NavComponent.scss";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export function NavComponent({ reviewAvatar }: { reviewAvatar: string }) {
   const navigate = useNavigate();
@@ -13,7 +14,9 @@ export function NavComponent({ reviewAvatar }: { reviewAvatar: string }) {
   return (
     <nav className="nav">
       <div className="content">
-        <Avatar src={reviewAvatar} />
+        <Link to="/perfil">
+          <Avatar src={reviewAvatar} />
+        </Link>
         <input
           onKeyDown={(e) => {
             if (e.key == "Enter") {

@@ -1,9 +1,14 @@
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router";
-import { GoogleAuthenticator } from "../adapters/Authenticators/Google";
-import { IReviewrMolde } from "../interfaces/moldes/IReviewrModel";
-import { ReviewrsRepository } from "../adapters/repositories/ReviewsrRepository";
 
+// Interfaces
+import { IReviewrMolde } from "../interfaces/moldes/IReviewrModel";
+
+// Adpaters
+import { ReviewrsRepository } from "../adapters/repositories/ReviewsrRepository";
+import { GoogleAuthenticator } from "../adapters/Authenticators/Google";
+
+// CSS
 import "./styles/LoginPage.scss";
 
 export function LoginPage() {
@@ -39,22 +44,25 @@ async function getUserInfo(
     e.preventDefault();
 
     const googleAuth = new GoogleAuthenticator();
-    const userInfo = await googleAuth.getUserInfo();
-    const reviewrMolde: IReviewrMolde = {
-      name: userInfo.user.displayName as string,
-      avatar: userInfo.user.photoURL,
-      reviewrUID: userInfo.user.uid,
-    };
-
     const reviewrsRepository = new ReviewrsRepository();
+
+    const userInfo = await googleAuth.getUserInfo();
 
     const existentReviewr = await reviewrsRepository.findOneByAuthenticatorUID(
       userInfo.user.uid as string,
     );
 
-    if (!existentReviewr) await reviewrsRepository.create(reviewrMolde);
+    if (!existentReviewr) {
+      const reviewrMolde: IReviewrMolde = {
+        name: userInfo.user.displayName as string,
+        avatar: userInfo.user.photoURL,
+        reviewrUID: userInfo.user.uid,
+      };
 
-    localStorage.setItem("reviewr_uid", reviewrMolde.reviewrUID);
+      await reviewrsRepository.create(reviewrMolde);
+    }
+
+    localStorage.setItem("reviewr_uid", userInfo.user.uid);
     navigate("/homepage/action");
   } catch (e) {
     alert(e);

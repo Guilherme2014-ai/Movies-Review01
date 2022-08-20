@@ -7,6 +7,8 @@
 
     justify-content: center;
 
+    color: white;
+
     .content {
         padding: 28px;
         max-width: 500px;
@@ -23,6 +25,7 @@
             > div {
                 div {
                     p {
+                        margin: 20px 0;
                         word-wrap: break-word;
                     }
                 }
@@ -48,6 +51,32 @@
                             cursor: pointer;
                             transform: scale(1.02);
                         }
+                    }
+                }
+
+                .commentArea {
+                    margin-top: 40px;
+
+                    form {
+                        display: flex;
+
+                        margin-bottom: 40px;
+
+                        input {
+                            flex: 1;
+
+                            outline: none;
+
+                            padding: 20px;
+                            border-radius: 8px;
+
+                            padding: 20px;
+                        }
+                    }
+
+                    .comments {
+                        display: flex;
+                        flex-direction: column;
                     }
                 }
             }

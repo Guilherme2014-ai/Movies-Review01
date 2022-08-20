@@ -7,24 +7,27 @@ import { useNavigate } from "react-router";
 import { idUniqueV2 } from "id-unique-protocol";
 
 // Interfaces
+import { IMovie } from "../interfaces/entities/IMovies";
 import { IReviewrQueryHomePage } from "../interfaces/queries/IReviewrQueryHomePage";
 
 // Components
 import { NavComponent } from "../components/NavComponent";
+import { MovieCardComponent } from "../components/MovieCardComponent";
 import { CategoryWrapperComponent } from "../components/CategoryWrapperComponent";
 
+// Statics
+import { genres } from "../static/genres";
+
 // Adapters
-import { ReviewrsRepository } from "../adapters/repositories/ReviewsrRepository";
+import { TmdbAPI } from "../adapters/APIs/MovieAPIs/TmdbAPI";
+
+// Hooks
+import { useGetUserByIndentifier } from "../hooks/useGetUserByIdentifier";
 
 // CSS
 import "./styles/homePage.scss";
-import { genres } from "../static/genres";
-import { IMovie } from "../interfaces/entities/IMovies";
-import { TmdbAPI } from "../adapters/APIs/MovieAPIs/TmdbAPI";
-import { MovieCardComponent } from "../components/MovieCardComponent";
 
 export function HomePage() {
-  const navigate = useNavigate();
   const [reviewrState, setReviewrState] =
     useState<null | IReviewrQueryHomePage>(null);
   const { category_id } = useParams<{ category_id: string }>();
@@ -46,25 +49,7 @@ export function HomePage() {
       setAllCategoryMovies(movies as any as null | undefined);
     }
   }, [category_id]);
-
-  useEffect(() => {
-    const reviewAuthIdentifier = localStorage.getItem("reviewr_uid");
-
-    if (!reviewAuthIdentifier) {
-      navigate("/login");
-    } else {
-      getReviewrData();
-    }
-
-    async function getReviewrData() {
-      const reviewrRepository =
-        await new ReviewrsRepository().findOneByAuthenticatorUID(
-          reviewAuthIdentifier as string,
-        );
-
-      setReviewrState(reviewrRepository);
-    }
-  }, []);
+  useGetUserByIndentifier(setReviewrState);
 
   return (
     <div className="Homepage">

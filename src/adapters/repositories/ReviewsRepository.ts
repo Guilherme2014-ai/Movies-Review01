@@ -63,6 +63,7 @@ export class ReviewRepository {
               movieName
               moviePictureUrl
               category
+              reviewText
               likes
               deslikes
 
@@ -128,6 +129,14 @@ export class ReviewRepository {
             likes
             deslikes
             reviewText
+            comments {
+              reviewr {
+                id
+                name
+                avatarUrl
+              }
+              commentText
+            }
 
             reviewr {
               name

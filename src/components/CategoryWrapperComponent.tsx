@@ -14,7 +14,11 @@ export function CategoryWrapperComponent({
   const { category_id } = useParams<{ category_id: string }>();
 
   return (
-    <div className="categoryListArea">
+    <div
+      className="categoryListArea"
+      onMouseEnter={() => bodyoverflowHandler(true)}
+      onMouseLeave={() => bodyoverflowHandler(false)}
+    >
       <div
         className="categoryList"
         id="categoryList"
@@ -48,4 +52,8 @@ export function CategoryWrapperComponent({
       </div>
     </div>
   );
+}
+
+function bodyoverflowHandler(hidden: boolean) {
+  document.body.style.overflowY = hidden ? "hidden" : "auto";
 }

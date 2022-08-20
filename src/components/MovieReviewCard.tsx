@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Avatar } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router";
@@ -5,11 +6,22 @@ import { ReviewRepository } from "../adapters/repositories/ReviewsRepository";
 import { IReviewHomepageQuery } from "../interfaces/queries/IReviewHomepageQuery";
 import LikeComponent from "./icons/LikeComponent";
 import DeslikeComponent from "./icons/LikeComponent copy";
-import { SmallButtonComponent } from "./small/SmallButtonComponent";
 
 import "./styles/MovieReview.scss";
 
-export function MovieReviewCard({ review }: { review: IReviewHomepageQuery }) {
+export function MovieReviewCard({
+  review,
+  isLiked,
+  isUnliked,
+  onLikeFunc,
+  onUnlikeFunc,
+}: {
+  review: IReviewHomepageQuery;
+  isLiked: boolean;
+  isUnliked: boolean;
+  onLikeFunc: (reviewId: string) => void;
+  onUnlikeFunc: (reviewId: string) => void;
+}) {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +29,11 @@ export function MovieReviewCard({ review }: { review: IReviewHomepageQuery }) {
       <div
         className="movieReview"
         onClick={() => {
-          navigate(`/review/${review.id}`);
+          navigate(
+            `/review/${review.id}/${isLiked ? "true" : "false"}/${
+              isUnliked ? "true" : "false"
+            }`,
+          );
         }}
       >
         <div
@@ -27,24 +43,22 @@ export function MovieReviewCard({ review }: { review: IReviewHomepageQuery }) {
           }}
         ></div>
         <div className="content">
-          <SmallButtonComponent
-            movieName={review.movieName}
-            moviePicture={review.moviePictureUrl}
-          >
-            Make a Review
-          </SmallButtonComponent>
-
+          <p>{review.reviewText?.substring(0, 80)}...</p>
           <div className="rates">
             <LikeComponent
+              isLiked={isLiked}
               onClickFunc={(e: any) => {
                 e.stopPropagation();
-                feedbackReview(true, review);
+                feedbackReview(true, review); // estanho
+                onLikeFunc(review.id);
               }}
             />
             <DeslikeComponent
+              isUnliked={isUnliked}
               onClickFunc={(e: any) => {
                 e.stopPropagation();
                 feedbackReview(false, review);
+                onUnlikeFunc(review.id);
               }}
             />
           </div>

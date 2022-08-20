@@ -5,5 +5,5 @@ export interface IReviewrQueryHomePage {
   name: string;
   avatarUrl: string;
 
-  reviews: IReviewHomepageQuery[];
+  reviews?: IReviewHomepageQuery[];
 }

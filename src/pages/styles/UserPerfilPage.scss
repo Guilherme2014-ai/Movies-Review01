@@ -1,0 +1,40 @@
+.userperfilpage {
+    height: 100vh;
+    padding: 40px;
+    
+    .userperfilpage__container {
+        display: flex;
+        height: 100%;
+
+        aside {
+            flex: 1;
+            background-color: #4d4d4d;
+
+            padding: 20px;
+
+            ul {
+                height: 100%;
+
+                display: flex;
+                flex-direction: column;
+
+                li {
+                    margin: 15px 0;
+                    padding: 20px;
+                    border-radius: 8px;
+                    text-align: center;
+                    background-color: #212121;
+                    color: #9e9e9e;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        main {
+            flex: 3;
+            background-color: #212121;
+        }
+    }
+}

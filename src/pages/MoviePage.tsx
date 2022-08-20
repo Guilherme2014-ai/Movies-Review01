@@ -13,6 +13,10 @@ import "./styles/MoviePage.scss";
 
 export function MoviePage() {
   const { movie_id } = useParams<{ movie_id: string }>();
+
+  const [reviewsLikedId, setReviewsLikedId] = useState<string[]>([]);
+  const [reviewsUnikedId, setReviewsUnikedId] = useState<string[]>([]);
+
   const [movieDetail, setMovieDetail] = useState<IMovie | null>(null);
   const [movieReviewsState, setMovieReviewsState] = useState<
     IReviewHomepageQuery[] | null
@@ -20,6 +24,17 @@ export function MoviePage() {
 
   useGetMoviePageDetailsById(movie_id as string, setMovieDetail);
   useGetReviews(movieDetail, setMovieReviewsState);
+
+  function onLike(reviewId: string) {
+    const newLikesState = [...reviewsLikedId];
+    newLikesState.push(reviewId);
+    setReviewsLikedId(newLikesState);
+  }
+  function onUnlike(reviewId: string) {
+    const newUnlikesState = [...reviewsUnikedId];
+    newUnlikesState.push(reviewId);
+    setReviewsUnikedId(newUnlikesState);
+  }
 
   return (
     <div className="MoviePage">
@@ -53,8 +68,18 @@ export function MoviePage() {
         <div className="MoviePage__moviePost__reviews">
           {movieReviewsState &&
             movieReviewsState.map((movieReview) => {
+              const isLiked = reviewsLikedId.includes(movieReview.id);
+              const isUnliked = reviewsUnikedId.includes(movieReview.id);
+
               return (
-                <MovieReviewCard review={movieReview} key={movieReview.id} />
+                <MovieReviewCard
+                  isLiked={isLiked}
+                  isUnliked={isUnliked}
+                  review={movieReview}
+                  key={movieReview.id}
+                  onLikeFunc={onLike}
+                  onUnlikeFunc={onUnlike}
+                />
               );
             })}
         </div>

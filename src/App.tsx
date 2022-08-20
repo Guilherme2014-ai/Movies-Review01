@@ -10,12 +10,12 @@ import {
 import { LoginPage } from "./pages/LoginPage";
 import { HomePage } from "./pages/HomePage";
 import { MakeReviewPage } from "./pages/MakeReviewPage";
-
+import { MoviePage } from "./pages/MoviePage";
 import { ReviewPage } from "./pages/ReviewPage";
 
 // CSS
 import "./styles/App.scss";
-import { MoviePage } from "./pages/MoviePage";
+import { UserPerfilPage } from "./pages/UserPerfilPage";
 
 function Redirect() {
   const navigate = useNavigate();
@@ -26,13 +26,19 @@ function Redirect() {
   return <h1>Loading...</h1>;
 }
 
+// Sistema de likes incompleto - Eu poderia fazer isto ridiculamente mais facil, porem preferi exercitar a logica
+
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route path="/" element={<Redirect />} />
-          <Route path="/review/:review_id" element={<ReviewPage />} />
+          <Route path="/perfil" element={<UserPerfilPage />} />
+          <Route
+            path="/review/:review_id/:liked/:unliked"
+            element={<ReviewPage />}
+          />
           <Route
             path="/make_review/:movieName/:movieProfilePicture"
             element={<MakeReviewPage />}
