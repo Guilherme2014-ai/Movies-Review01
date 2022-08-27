@@ -6,7 +6,9 @@ import { IReviewMolde } from "../../interfaces/moldes/IReviewMolde";
 export class ReviewRepository {
   async create(reviewMolde: IReviewMolde) {
     try {
-      const { movieName, review, category, moviePictureUrl } = reviewMolde;
+      const { movieName, review, category, moviePictureUrl, reviewrID } =
+        reviewMolde;
+
       await apolloClient.mutate({
         mutation: gql`
           mutation createReview(
@@ -14,6 +16,7 @@ export class ReviewRepository {
             $reviewText: String!
             $category: String!
             $moviePictureUrl: String
+            $reviewrID: ID!
           ) {
             createReview(
               data: {
@@ -23,7 +26,7 @@ export class ReviewRepository {
                 likes: 0
                 deslikes: 0
                 category: $category
-                reviewr: { connect: { id: "cl69v42jj7zyh0akjdufrwnbn" } }
+                reviewr: { connect: { id: $reviewrID } }
               }
             ) {
               movieName
@@ -32,6 +35,7 @@ export class ReviewRepository {
         `,
         variables: {
           movieName,
+          reviewrID,
           reviewText: review,
           category: category,
           moviePictureUrl,

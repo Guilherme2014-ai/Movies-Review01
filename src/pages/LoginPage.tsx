@@ -63,7 +63,7 @@ async function getUserInfo(
     }
 
     localStorage.setItem("reviewr_uid", userInfo.user.uid);
-    navigate("/homepage/action");
+    navigate("/homepage/28");
   } catch (e) {
     alert(e);
     console.error(e);

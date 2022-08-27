@@ -14,7 +14,6 @@ export class TmdbAPI implements IMovieAPI {
         this.baseUrl,
         `/discover/movie/?with_genres=${category}`,
       );
-
       const moviesResponse = await axios.get<any>(url);
       const movies = moviesResponse.data.results;
 

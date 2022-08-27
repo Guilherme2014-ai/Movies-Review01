@@ -5,7 +5,7 @@ import { IReviewrQueryHomePage } from "../../interfaces/queries/IReviewrQueryHom
 
 export class ReviewrsRepository {
   async create(reviewr: IReviewrMolde) {
-    const reviewrCreated = await apolloClient.mutate({
+    await apolloClient.mutate({
       mutation: gql`
         mutation createNewReviewr(
           $reviewrName: String!
@@ -33,21 +33,22 @@ export class ReviewrsRepository {
 
     await apolloClient.mutate({
       mutation: gql`
-        mutation publishReviewsr {
-          publishManyReviews(to: PUBLISHED) {
+        mutation publishManyReviewrs {
+          publishManyReviewrs(to: PUBLISHED) {
             count
           }
         }
       `,
     });
   }
+
   async findOneByAuthenticatorUID(authenticatorUID: string) {
     const queryResult = await apolloClient.query<{
       reviewr: IReviewrQueryHomePage;
     }>({
       query: gql`
-        query findOneReviewr {
-          reviewr(where: { authenticatorId: "wJLHCzSvWfchn6P8J6cx1F0bAoy2" }) {
+        query findOneReviewr($authenticatorId: String!) {
+          reviewr(where: { authenticatorId: $authenticatorId }) {
             id
             name
             avatarUrl
@@ -65,7 +66,7 @@ export class ReviewrsRepository {
         }
       `,
       variables: {
-        reviewrEmail: authenticatorUID,
+        authenticatorId: authenticatorUID,
       },
     });
 

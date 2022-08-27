@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import NotificationIcon from "./icons/NotificationIcon";
 
-import "./styles/NavComponent.scss";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+
+// Components
+import NotificationIcon from "./icons/NotificationIcon";
+import { PerfilAvatarComponent } from "./PerfilAvatarComponent";
+
+// CSS
+import "./styles/NavComponent.scss";
 
 export function NavComponent({ reviewAvatar }: { reviewAvatar: string }) {
   const navigate = useNavigate();
@@ -15,7 +19,7 @@ export function NavComponent({ reviewAvatar }: { reviewAvatar: string }) {
     <nav className="nav">
       <div className="content">
         <Link to="/perfil">
-          <Avatar src={reviewAvatar} />
+          <PerfilAvatarComponent reviewrProfilePictureUrl={reviewAvatar} />
         </Link>
         <input
           onKeyDown={(e) => {

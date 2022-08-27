@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 // Dependences
 import { useParams } from "react-router";
-import { useNavigate } from "react-router";
 import { idUniqueV2 } from "id-unique-protocol";
 
 // Interfaces
@@ -40,8 +39,6 @@ export function HomePage() {
 
     // By ID *
     async function getAllCategoryReviews() {
-      console.log("getAllCategoryReviews Func --> Test");
-
       const movies = await new TmdbAPI().getMoviesByCategory(
         category_id as string,
       );

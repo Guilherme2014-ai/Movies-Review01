@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
+
+// Hooks
+import { useGetUserByIndentifier } from "../hooks/useGetUserByIdentifier";
 
 // Adapters
 import { ReviewRepository } from "../adapters/repositories/ReviewsRepository";
@@ -31,6 +35,8 @@ export function MakeReviewPage() {
     useState(movieProfilePicture);
   const [movieCategoryState, setMovieCategoryState] = useState("");
   const [movieReviewState, setMovieReviewState] = useState("");
+
+  useGetUserByIndentifier(setReviewrDataState);
 
   async function sendReview(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
