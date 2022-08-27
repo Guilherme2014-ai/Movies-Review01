@@ -6,8 +6,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-// asdasd
-
 // Components
 import { LoginPage } from "./pages/LoginPage";
 import { HomePage } from "./pages/HomePage";
